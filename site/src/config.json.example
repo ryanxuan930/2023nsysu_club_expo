@@ -1,0 +1,7 @@
+{
+  "serverUrl": "https://partners.oia.nsysu.edu.tw/v2-server/api/",
+  "resourceUrl": "https://partners.oia.nsysu.edu.tw/v2-server/storage/",
+  "testServerUrl": "",
+  "testResourceUrl": "",
+  "testMode": false
+}

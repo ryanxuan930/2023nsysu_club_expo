@@ -1,0 +1,171 @@
+@import './base.scss';
+
+.round-input-label {
+  @apply block text-left text-base md:text-lg text-gray-700;
+  .title,
+  .toggle-box {
+    @apply p-1;
+  }
+  .input,
+  .select {
+    @apply block w-full px-4 py-1 rounded-full border-2 appearance-none text-base md:text-lg;
+  }
+}
+.round-full-button {
+  @apply block py-1 px-4 duration-200 border-2 text-white w-full rounded-full text-base md:text-lg;
+  &.blue {
+    @apply bg-blue-500 hover:bg-blue-400 border-blue-500 hover:border-blue-400;
+    /*
+    @apply dark:bg-blue-600 dark:hover:bg-blue-500;
+    */
+  }
+  &.blue-hollow {
+    @apply text-blue-500 hover:text-white hover:bg-blue-400 border-blue-500 hover:border-blue-400;
+    /*
+    @apply dark:bg-blue-600 dark:hover:bg-blue-500;
+    */
+  }
+  &.red {
+    @apply bg-red-600 hover:bg-red-500 border-red-600 hover:border-red-500;
+    /*
+    @apply dark:bg-blue-600 dark:hover:bg-blue-500;
+    */
+  }
+}
+.full-button {
+  @apply block py-2 px-5 duration-200 text-white w-full rounded text-base md:text-lg;
+  &.blue {
+    @apply bg-blue-500 hover:bg-blue-400;
+    /*
+    @apply dark:bg-blue-600 dark:hover:bg-blue-500;
+    */
+  }
+  &.red {
+    @apply bg-red-600 hover:bg-red-500;
+    /*
+    @apply dark:bg-blue-600 dark:hover:bg-blue-500;
+    */
+  }
+}
+.hyperlink {
+  @apply duration-200 cursor-pointer;
+  &.blue {
+    @apply text-blue-500 hover:text-blue-400;
+    /*
+    @apply dark:text-blue-400 dark:hover:text-blue-300;
+    */
+  }
+  &.red {
+    @apply text-red-600 hover:text-red-500;
+    /*
+    @apply dark:bg-blue-600 dark:hover:bg-blue-500;
+    */
+  }
+}
+
+.nav-link {
+  @apply px-2 text-center text-xl block hover:bg-blue-400 hover:text-white duration-300 cursor-pointer;
+  div {
+    @apply p-3 border-y-[0.5px];
+  }
+  &.router-link-exact-active {
+    @apply bg-blue-500 text-white;
+  }
+}
+
+.general-button {
+  @apply inline-block py-1 px-2 duration-200 text-white rounded;
+  &.blue {
+    @apply bg-blue-500 hover:bg-blue-400;
+    /*
+    @apply dark:bg-blue-600 dark:hover:bg-blue-500;
+    */
+  }
+  &.red {
+    @apply bg-red-600 hover:bg-red-500;
+    /*
+    @apply dark:bg-blue-600 dark:hover:bg-blue-500;
+    */
+  }
+  &[disabled] {
+    @apply bg-gray-300 hover:bg-gray-300 cursor-not-allowed animate-none;
+  }
+}
+
+.main-box {
+  @apply bg-white p-7 shadow h-full overflow-x-auto;
+}
+
+.section-box {
+  @apply bg-white p-7 shadow overflow-x-auto;
+}
+
+.general-toggle {
+  --toggle-width: 4.8rem !important;
+  --toggle-height: 2rem !important;
+  --toggle-bg-on: rgb(59, 130, 246) !important;
+  --toggle-border-on: rgb(59, 130, 246) !important;
+  --toggle-ring-color: #13a0d730 !important;
+  --toggle-font-size: 1rem !important;
+}
+
+.config-table {
+  @apply w-full border-collapse;
+  th {
+    @apply top-0 sticky bg-blue-100;
+  }
+  td,
+  th {
+    @apply p-2 text-lg text-left;
+  }
+  .index {
+    @apply text-xl;
+  }
+  .round-input {
+    @apply py-1 px-4 border-2 rounded-full w-full appearance-none;
+  }
+  .checkbox {
+    @apply border-0 w-6 h-6;
+  }
+}
+
+h1 {
+  @apply text-4xl font-semibold;
+}
+h2 {
+  @apply text-3xl font-semibold;
+}
+h3 {
+  @apply text-2xl font-semibold;
+}
+h4 {
+  @apply text-xl font-semibold;
+}
+h5 {
+  @apply text-xl font-medium;
+}
+h6 {
+  @apply text-xl font-normal;
+}
+
+.page-title {
+  @apply text-2xl font-semibold;
+}
+.page-title-hr {
+  @apply border-2 border-gray-400 my-3;
+}
+.page-content-box {
+  @apply p-5 sm:p-10 m-auto w-full sm:w-[640px] md:w-[768px] lg:w-[1024px];
+}
+.page-section-title {
+  @apply text-xl font-semibold p-3;
+}
+.page-section-box {
+  @apply p-3 bg-gray-100;
+}
+.page-button-box {
+  @apply flex flex-wrap items-center gap-4;
+  button {
+    @apply text-lg px-8 py-2 rounded bg-gray-200 hover:bg-gray-300 duration-150;
+  }
+}
