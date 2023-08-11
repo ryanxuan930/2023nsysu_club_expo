@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user';
 import VueRequest from '@/vue-request';
 import QrcodeContent from '@/components/game/QrcodeContent.vue';
+import SmallModal from '@/components/SmallModal.vue';
 
 const { t, locale } = useI18n();
 const router = useRouter();
@@ -23,11 +24,39 @@ const displayModal = ref(0);
           <div class="text-3xl">{{ user.userInfo.name }}</div>
           <div class="text-xl">{{ user.userInfo.school_id }}</div>
         </div>
-        <QrcodeContent></QrcodeContent>
+        <hr>
+        <div></div>
+        <hr>
+        <div class="flex flex-col gap-3 py-5">
+          <button class="round-full-button black" @click="displayModal = 1">{{ t('show-qr-code') }}</button>
+          <button class="round-full-button black" @click="router.push('/game/coupon')">{{ t('coupons') }}</button>
+        </div>
       </div>
       <div class="flex-grow"></div>
     </div>
   </div>
+  <SmallModal v-show="displayModal > 0" @closeModal="displayModal = 0">
+    <template v-slot:title>
+      <div class="text-2xl">
+        <div class="text-center" v-if="displayModal === 1">{{ user.userInfo.school_id }}</div>
+      </div>
+    </template>
+    <template v-slot:content>
+      <div class="overflow-auto h-full">
+        <QrcodeContent v-if="displayModal == 1"></QrcodeContent>
+      </div>
+    </template>
+  </SmallModal>
 </template>
 
 <style scoped lang="scss"></style>
+
+<i18n lang="yaml" src="@/assets/locales.yaml"></i18n>
+<i18n lang="yaml">
+  en-US:
+    show-qr-code: 'Show QR Code'
+    coupons: 'Coupons'
+  zh-TW:
+    show-qr-code: '顯示 QR Code'
+    coupons: '兌換券'
+</i18n>

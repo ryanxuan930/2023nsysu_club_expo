@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Club;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
 
 class UserAuthController extends Controller
 {
@@ -51,6 +53,25 @@ class UserAuthController extends Controller
             'email' => 'required|string|unique:users,email',
             'phone' => 'nullable|string',
         ]);
+        $clubs = Club::select('club_code')->get();
+        $root = sqrt(count($clubs));
+        if ($root == floor($root)) {
+            $root = floor($root);
+        } else {
+            $root = floor($root) + 1;
+        }
+        // if count($clubs) less then $root * $root, fill the rest with null
+        $clubs = $clubs->toArray();
+        // change each element to an object with key 'club_code', 'checked' and value is its original value and false respectively
+        $clubs = array_map(function($club) {
+            return ['club_code' => $club['club_code'], 'checked' => false];
+        }, $clubs);
+        $clubs = array_pad($clubs, $root * $root, null);
+        // shuffle the array
+        shuffle($clubs);
+        // transform the array to $root * $root matrix
+        $clubs = array_chunk($clubs, $root);
+        $data['status'] = '';
         $user = User::create($data);
         return response()->json(['message' => 'OK'], 200);
     }
@@ -58,6 +79,21 @@ class UserAuthController extends Controller
     public function user()
     {
         return response()->json(['message' => 'OK', 'user' => auth('user')->user()], 200);
+    }
+
+    public function qrcode()
+    {
+        $user = auth('user')->user();
+        $timestamp = time();
+        $timestamp += 122;
+        $timestamp = strval($timestamp);
+        $content = [
+            'u_id' => $user->u_id,
+            'school_id' => $user->school_id,
+            'timestamp' => $timestamp,
+        ];
+        $encryptedValue = Crypt::encryptString(json_encode($content));
+        return response()->json($encryptedValue);
     }
 
     public function exists()

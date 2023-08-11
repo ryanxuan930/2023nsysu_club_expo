@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Model implements JWTSubject
+class Admin extends Authenticatable implements JWTSubject
 {
     use HasFactory, HasFactory, Notifiable;
 

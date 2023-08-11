@@ -36,5 +36,12 @@ Route::prefix('auth/user')->group(function () {
     Route::post('register', [UserAuthController::class, 'register']);
     Route::post('exists', [UserAuthController::class, 'exists']);
     Route::get('info', [UserAuthController::class, 'user']);
+    Route::get('qrcode', [UserAuthController::class, 'qrcode']);
     Route::post('logout', [UserAuthController::class, 'logout']);
+});
+// Admin auth api routes
+Route::prefix('auth/admin')->group(function () {
+    Route::post('login', [AdminAuthController::class, 'login']);
+    Route::post('logout', [AdminAuthController::class, 'logout']);
+    Route::get('info', [AdminAuthController::class, 'admin']);
 });

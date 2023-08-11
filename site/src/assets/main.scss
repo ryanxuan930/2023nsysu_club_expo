@@ -31,6 +31,12 @@
     @apply dark:bg-blue-600 dark:hover:bg-blue-500;
     */
   }
+  &.black {
+    @apply bg-black hover:bg-opacity-90 border-black hover:border-opacity-90;
+    /*
+    @apply dark:bg-blue-600 dark:hover:bg-blue-500;
+    */
+  }
 }
 .full-button {
   @apply block py-2 px-5 duration-200 text-white w-full rounded text-base md:text-lg;

@@ -148,6 +148,23 @@ const router = createRouter({
       path: '/admin',
       name: 'admin',
       component: () => import('../views/AdminView.vue'),
+      children: [
+        {
+          path: '',
+          name: 'adminHomePage',
+          component: () => import('../views/admin/HomePage.vue'),
+        },
+        {
+          path: 'bulletin',
+          name: 'adminBulletinPage',
+          component: () => import('../views/admin/BulletinPage.vue'),
+        },
+        {
+          path: 'scan',
+          name: 'adminScanPage',
+          component: () => import('../views/admin/ScanPage.vue'),
+        }
+      ]
     },
     {
       path: '/game',
