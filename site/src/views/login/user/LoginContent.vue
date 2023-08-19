@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import VueRequest from '@/vue-request';
 import { useUserStore } from '@/stores/user';
+import { useAlarmStore } from '@/stores/alarm';
 
 const data: Ref<{
   school_id: string,
@@ -20,6 +21,7 @@ const vr = new VueRequest();
 const { t, locale } = useI18n();
 
 const user = useUserStore();
+const alarm = useAlarmStore();
 
 function submitAll() {
   if (data.value.school_id === '') {
@@ -60,6 +62,7 @@ function submitAll() {
         userInfo: user.userInfo,
         expire: user.expire,
       };
+      alarm.playSound(0);
       // set userStore data to localStorage
       localStorage.setItem('userDataStore', JSON.stringify(userData));
       router.push('/game');

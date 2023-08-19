@@ -13,8 +13,9 @@ const admin = useAdminStore();
     <div class="text-2xl">{{ admin.userInfo.name }}</div>
     <hr>
     <button class="round-full-button black" @click="router.push('/admin/scan')">掃碼通關</button>
+    <button class="round-full-button black" @click="router.push('/admin/redeem')">掃碼兌換</button>
     <button class="round-full-button black" @click="router.push('/admin/bulletin')">公告欄</button>
-    <button class="round-full-button black" @click="router.push('/admin/announce')">警訊通知</button>
+    <button class="round-full-button black" @click="router.push('/admin/broadcast')">警訊通知</button>
   </div>
 </template>
 

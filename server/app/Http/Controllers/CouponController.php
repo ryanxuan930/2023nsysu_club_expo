@@ -9,7 +9,7 @@ class CouponController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin')->except(['index', 'show']);
+        $this->middleware('auth:admin')->except(['index', 'show', 'showByArray']);
     }
 
     /**
@@ -42,6 +42,17 @@ class CouponController extends Controller
     public function show(int $id)
     {
         return Coupon::find($id);
+    }
+
+    /**
+     * Display the specified resource by array.
+     */
+    public function showByArray(Request $request) 
+    {
+        $data = $request->validate([
+            'payload' => 'required|array',
+        ]);
+        return Coupon::whereIn('coupon_code', $data['payload'])->get();
     }
 
     /**

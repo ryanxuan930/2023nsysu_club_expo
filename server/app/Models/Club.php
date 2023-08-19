@@ -28,6 +28,11 @@ class Club extends Model
         'club_name_en',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function admins() {
         return $this->hasMany(Admin::class, 'club_code', 'club_code');
     }

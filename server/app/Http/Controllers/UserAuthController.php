@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Club;
+use App\Models\Broadcast;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Crypt;
 
@@ -71,7 +72,13 @@ class UserAuthController extends Controller
         shuffle($clubs);
         // transform the array to $root * $root matrix
         $clubs = array_chunk($clubs, $root);
-        $data['status'] = '';
+        // temp is a dict variable, consist of 'matrix': $clubs, 'lines': number, 'remarks': array
+        $temp = [
+            'matrix' => $clubs,
+            'lines' => 0,
+            'remarks' => [],
+        ];
+        $data['status'] = $temp;
         $user = User::create($data);
         return response()->json(['message' => 'OK'], 200);
     }
@@ -79,6 +86,17 @@ class UserAuthController extends Controller
     public function user()
     {
         return response()->json(['message' => 'OK', 'user' => auth('user')->user()], 200);
+    }
+
+    public function status()
+    {
+        // find Broadcast expired_at is greater than now
+        $broadcast = Broadcast::where('expired_at', '>=', now())->first();
+        $data = [
+            'status' => auth('user')->user()->status,
+            'broadcast' => $broadcast,
+        ];
+        return response()->json($data);
     }
 
     public function qrcode()

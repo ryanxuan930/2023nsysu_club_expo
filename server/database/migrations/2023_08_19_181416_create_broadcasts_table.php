@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clubs', function (Blueprint $table) {
-            $table->id('club_id');
-            $table->char('club_type', 1);
-            $table->char('club_code', 3)->unique();
-            $table->string('club_name_ch');
-            $table->string('club_name_en');
+        Schema::create('broadcasts', function (Blueprint $table) {
+            $table->id('broadcast_id');
+            $table->string('title');
+            $table->string('content');
+            $table->datetime('expired_at');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clubs');
+        Schema::dropIfExists('broadcasts');
     }
 };

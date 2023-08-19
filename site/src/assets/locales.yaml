@@ -20,6 +20,8 @@ en-US:
   nsysu-osa-ag-website: 'SLCDD Website'
   nsysu-sa-facebook: 'NSYSUSA Facebook'
   nsysu-sa-website: 'NSYSUSA Website'
+  back: 'Back'
+  logout: 'Logout'
 zh-TW:
   login: '登入'
   register: '註冊帳號'
@@ -42,3 +44,5 @@ zh-TW:
   nsysu-osa-ag-website: '校園組官網'
   nsysu-sa-facebook: '學生會粉專'
   nsysu-sa-website: '學生會官網'
+  back: '返回'
+  logout: '登出'

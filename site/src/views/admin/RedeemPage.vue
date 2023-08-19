@@ -2,20 +2,12 @@
 import { ref } from 'vue';
 import { useAdminStore } from '@/stores/admin';
 import VueRequest from '@/vue-request';
-import { useRouter } from 'vue-router';
 import { QrcodeStream } from 'qrcode-reader-vue3';
 
 const admin = useAdminStore();
 const vr = new VueRequest(admin?.token === undefined ? undefined : admin.token);
 const isPaused = ref(false);
-const clubCode = ref(admin.userInfo.club_code);
-const schoolId = ref('');
-const clubs: any = ref([]);
 
-function getData() {
-  vr.Get('clubs', clubs);
-}
-getData();
 
 async function initialize(promise: any) {
   try {
@@ -44,21 +36,16 @@ async function initialize(promise: any) {
 }
 async function codeHandler(code: string) {
   isPaused.value = true;
-  if (clubCode.value === '') {
-    alert('請先選擇所屬關卡');
-    isPaused.value = false;
-    return;
-  }
   const r = confirm('確定進行驗證？');
   if (!r) {
     return;
   }
-  const res = await vr.Post('auth/admin/decode', { club_code: clubCode.value, payload: code}, null, true, true);
+  const res = await vr.Post('auth/admin/redeem', { payload: code }, null, true, true);
   if (res.message === 'OK') {
     alert('驗證成功');
-  } else if (res.message === 'expired') {
-    alert('QR Code 已過期');
-  } else if (res.message === 'not_found') {
+  } else if (res.message === 'redeemed') {
+    alert('已兌換過');
+  } else if (res.message === 'coupon_not_found') {
     alert('找不到資料');
   } else if (res.message === 'error') {
     alert('QR Code 錯誤');
@@ -68,30 +55,6 @@ async function codeHandler(code: string) {
   setTimeout(() => {
     isPaused.value = false;
   }, 1000);
-}
-
-async function inputHandler() {
-  if (clubCode.value === '') {
-    alert('請先選擇所屬關卡');
-    return;
-  }
-  if (schoolId.value === '') {
-    alert('請輸入學號');
-    return;
-  }
-  const r = confirm('確定驗證學號：' + schoolId.value + '？');
-  if (!r) {
-    return;
-  }
-  const res = await vr.Post('auth/admin/input', { club_code: clubCode.value, school_id: schoolId.value}, null, true, true);
-  if (res.message === 'OK') {
-    alert('驗證成功');
-  } else if (res.message === 'not_found') {
-    alert('找不到資料');
-  } else {
-    alert('驗證失敗');
-  }
-  schoolId.value = '';
 }
 
 function paintOutline(detectedCodes: any, ctx: any) {
@@ -116,16 +79,7 @@ function paintOutline(detectedCodes: any, ctx: any) {
   <div class="w-full sm:m-auto sm:w-96 p-5 flex flex-col gap-5">
     <router-link to="/admin">回上頁</router-link>
     <hr>
-    <div class="text-2xl">1. 選擇所屬關卡</div>
-    <div>
-      <label class="round-input-label">
-        <select class="select" v-model="clubCode" :disabled="admin.userInfo.role < 1">
-          <option value="">請選擇</option>
-          <option :value="item.club_code" v-for="(item, index) in clubs" :key="index">{{ item.club_code }} {{ item.club_name_ch }}</option>
-        </select>
-      </label>
-    </div>
-    <div class="text-2xl">2. 掃描QR Code</div>
+    <div class="text-2xl">掃描QR Code</div>
     <div>
       <QrcodeStream @init="initialize" @decode="codeHandler" :paused="isPaused" :track="paintOutline">
         <div class="h-full w-full flex flex-col bg-white bg-opacity-80" v-if="isPaused">
@@ -135,13 +89,6 @@ function paintOutline(detectedCodes: any, ctx: any) {
         </div>
       </QrcodeStream>
     </div>
-    <div class="text-2xl">或輸入學號進行驗證</div>
-    <div>
-      <label class="round-input-label">
-        <input class="input" type="text" v-model="schoolId" />
-      </label>
-    </div>
-    <button class="round-full-button black" @click="inputHandler">驗證</button>
   </div>
 </template>
 

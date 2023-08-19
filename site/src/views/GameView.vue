@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { onMounted, onBeforeUnmount } from 'vue';
 import VueRequest from '@/vue-request';
 import { useUserStore } from '@/stores/user';
 import { useRouter } from 'vue-router';
+import { useAlarmStore } from '@/stores/alarm';
 
 const router = useRouter();
 const user = useUserStore();
+const alarm = useAlarmStore();
 
 if (!user.token) {
   const data = localStorage.getItem('userDataStore');
@@ -30,6 +33,28 @@ vr.Get('auth/user/info', null, true, true).then((res: any) => {
     localStorage.removeItem('userDataStore');
     router.push('/login');
   }
+});
+
+let hasBroadcast = false;
+async function refreshStatus() {
+  const res = await vr.Get('auth/user/status', null, true, true);
+  user.userInfo.status = res.status;
+  if (res.broadcast != null && !hasBroadcast) {
+    hasBroadcast = true;
+    alarm.playSound(1);
+    alarm.setAlert(res.broadcast.title, res.broadcast.content);
+    window.navigator.vibrate([1000, 500, 1000, 500, 1000]);
+    setTimeout(() => {
+      hasBroadcast = false;
+    }, 10000);
+  }
+}
+let invervalContext: any;
+onMounted(() => {
+  invervalContext = setInterval(refreshStatus, 6000);
+});
+onBeforeUnmount(() => {
+  clearInterval(invervalContext);
 });
 </script>
 

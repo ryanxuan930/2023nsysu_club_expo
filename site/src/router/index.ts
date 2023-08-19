@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import GameView from '../views/GameView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -164,17 +163,33 @@ const router = createRouter({
           name: 'adminScanPage',
           component: () => import('../views/admin/ScanPage.vue'),
         }
+        ,
+        {
+          path: 'redeem',
+          name: 'adminRedeemPage',
+          component: () => import('../views/admin/RedeemPage.vue'),
+        },
+        {
+          path: 'broadcast',
+          name: 'adminBroadcastPage',
+          component: () => import('../views/admin/BroadcastPage.vue'),
+        },
       ]
     },
     {
       path: '/game',
       name: 'game',
-      component: GameView,
+      component: () => import('../views/GameView.vue'),
       children: [
         {
           path: '',
           name: 'gamePage',
           component: () => import('../views/game/GamePage.vue'),
+        },
+        {
+          path: 'coupon',
+          name: 'couponPage',
+          component: () => import('../views/game/CouponPage.vue'),
         },
       ]
     },
