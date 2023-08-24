@@ -29,7 +29,7 @@ setInterval(() => {
 </script>
 
 <template>
-  <div v-if="isLoaded">
+  <div>
     <div class="flex">
       <div class="flex-grow"></div>
       <QRCodeVue3
