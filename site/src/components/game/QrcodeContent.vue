@@ -13,7 +13,10 @@ const counter = ref(0);
 async function getData() {
   await vr.Get('auth/user/qrcode', qrcode, true, true);
   counter.value = 120;
+  console.log(qrcode.value);
+  console.log(1);
 }
+console.log(2);
 getData();
 setInterval(() => {
   counter.value--;
