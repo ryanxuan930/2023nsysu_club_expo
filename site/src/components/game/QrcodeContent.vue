@@ -31,7 +31,7 @@ setInterval(() => {
 <template>
   <div>
     <div class="flex">
-      <div class="flex-grow"></div>
+      <!--<div class="flex-grow"></div>-->
       <QRCodeVue3
         :width="350"
         :height="350"
@@ -48,7 +48,7 @@ setInterval(() => {
         fileExt="png"
         :image="'./src/assets/logo_only.svg'"
       />
-      <div class="flex-grow"></div>
+      <!--<div class="flex-grow"></div>-->
     </div>
     <div class="text-center text-lg">{{ t('valid-in') }} {{ counter }} {{ t('seconds', counter) }}</div>
   </div>
