@@ -64,6 +64,18 @@ services:
                 - ping
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        container_name: laravel_phpmyadmin
+        environment:
+            PMA_HOST: mariadb
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+        ports:
+            - "8080:80"
+        networks:
+            - sail
+        depends_on:
+            - mariadb
 networks:
     sail:
         driver: bridge
