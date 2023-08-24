@@ -18,7 +18,6 @@ async function getData() {
   console.log(isLoaded.value);
   console.log(qrcode.value);
 }
-console.log(QRCodeVue3);
 getData();
 setInterval(() => {
   counter.value--;
@@ -29,9 +28,9 @@ setInterval(() => {
 </script>
 
 <template>
-  <div>
+  <div v-if="isLoaded">
     <div class="flex">
-      <!--<div class="flex-grow"></div>-->
+      <div class="flex-grow"></div>
       <QRCodeVue3
         :width="350"
         :height="350"
@@ -48,7 +47,7 @@ setInterval(() => {
         fileExt="png"
         :image="'./src/assets/logo_only.svg'"
       />
-      <!--<div class="flex-grow"></div>-->
+      <div class="flex-grow"></div>
     </div>
     <div class="text-center text-lg">{{ t('valid-in') }} {{ counter }} {{ t('seconds', counter) }}</div>
   </div>
