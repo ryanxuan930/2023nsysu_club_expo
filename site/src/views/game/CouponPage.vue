@@ -9,7 +9,6 @@ import SmallModal from '@/components/SmallModal.vue';
 import CouponContent from '@/components/game/CouponContent.vue';
 
 const { t, locale } = useI18n();
-const router = useRouter();
 const user = useUserStore();
 const vr = new VueRequest(user.token);
 const displayModal = ref(0);
@@ -88,7 +87,7 @@ function validation(item: any): string {
         </div>
         <hr>
         <div class="p-3 text-xl text-center">{{ t('coupon') }}</div>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3" v-if="coupons.length > 0">
           <div :class="['coupon', item.coupon_context.type, validation(item)]" v-for="(item, index) in coupons" :key="index" @click="open(item)">
             <div v-if="item.coupon_context.type == 'meal'" class="coupon-icon material-symbols-outlined">restaurant</div>
             <div v-if="item.coupon_context.type == 'lucky_draw'" class="coupon-icon material-symbols-outlined">redeem</div>
