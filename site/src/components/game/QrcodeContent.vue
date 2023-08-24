@@ -35,7 +35,7 @@ setInterval(() => {
       <QRCodeVue3
         :width="350"
         :height="350"
-        value="qrcode"
+        :value="qrcode"
         :qrOptions="{ typeNumber: 15, mode: 'Byte', errorCorrectionLevel: 'Q' }"
         :imageOptions="{ hideBackgroundDots: true, imageSize: 0.3, margin: 0 }"
         :dotsOptions="{
