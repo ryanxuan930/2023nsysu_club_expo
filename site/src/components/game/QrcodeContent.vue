@@ -8,14 +8,11 @@ import { useI18n } from 'vue-i18n';
 const user = useUserStore();
 const vr = new VueRequest(user.token);
 const qrcode: any = ref('');
-const isLoaded = ref(false);
 const { t, locale } = useI18n();
 const counter = ref(0);
 async function getData() {
   await vr.Get('auth/user/qrcode', qrcode, true, true);
-  isLoaded.value = true;
   counter.value = 120;
-  console.log(isLoaded.value);
 }
 getData();
 setInterval(() => {
@@ -27,7 +24,7 @@ setInterval(() => {
 </script>
 
 <template>
-  <div v-if="isLoaded">
+  <div v-if="qrcode != ''">
     <div class="flex">
       <div class="flex-grow"></div>
       <QRCodeVue3
