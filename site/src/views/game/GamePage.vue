@@ -52,7 +52,6 @@ function logout() {
           <button class="round-full-button black" @click="router.push('/game/coupon')">{{ t('coupons') }}</button>
         </div>
         <hr>
-        <QrcodeContent></QrcodeContent>
         <div class="p-2 text-xl text-center">集點遊戲</div>
         <div>
           <table class="club-table">
