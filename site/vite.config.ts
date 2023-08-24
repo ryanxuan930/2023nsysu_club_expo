@@ -17,5 +17,14 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'my-chunk': ['qrcode-vue3']
+        }
+      }
+    }
   }
 });
