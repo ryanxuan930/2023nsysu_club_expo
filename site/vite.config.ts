@@ -19,12 +19,6 @@ export default defineConfig({
     }
   },
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'my-chunk': ['qrcode-vue3']
-        }
-      }
-    }
+    minify: false
   }
 });
