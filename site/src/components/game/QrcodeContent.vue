@@ -15,6 +15,7 @@ async function getData() {
   await vr.Get('auth/user/qrcode', qrcode, true, true);
   isLoaded.value = true;
   counter.value = 120;
+  console.log(isLoaded.value);
 }
 getData();
 setInterval(() => {
