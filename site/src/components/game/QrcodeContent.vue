@@ -16,6 +16,7 @@ async function getData() {
   isLoaded.value = true;
   counter.value = 120;
   console.log(isLoaded.value);
+  console.log(QRCodeVue3);
   console.log(qrcode.value);
 }
 getData();
