@@ -18,7 +18,7 @@ async function getData() {
   console.log(isLoaded.value);
   console.log(qrcode.value);
 }
-console.log(isLoaded.value);
+console.log(QRCodeVue3);
 getData();
 setInterval(() => {
   counter.value--;
@@ -36,7 +36,17 @@ setInterval(() => {
         :width="350"
         :height="350"
         :value="qrcode"
-        
+        :qrOptions="{ typeNumber: 15, mode: 'Byte', errorCorrectionLevel: 'Q' }"
+        :imageOptions="{ hideBackgroundDots: true, imageSize: 0.3, margin: 0 }"
+        :dotsOptions="{
+          type: 'extra-rounded',
+          color: '#000',
+        }"
+        :backgroundOptions="{ color: '#ffffff' }"
+        :cornersSquareOptions="{ type: 'extra-rounded', color: '#000000' }"
+        :cornersDotOptions="{ type: 'dot', color: '#000000' }"
+        fileExt="png"
+        :image="'./src/assets/logo_only.svg'"
       />
       <div class="flex-grow"></div>
     </div>
