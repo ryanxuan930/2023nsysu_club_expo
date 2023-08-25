@@ -15,13 +15,13 @@ const { t, locale } = useI18n();
 </script>
 
 <template>
-  <div class="sm:flex sm:items-center sm:gap-2 py-2 sm:px-10 bg-white shadow " ref="navBar">
-    <div @click="router.push('/')" class="cursor-pointer">
+  <div class="sm:flex sm:items-center sm:gap-2 sm:py-2 sm:px-10 bg-white shadow " ref="navBar">
+    <div @click="router.push('/')" class="cursor-pointer py-2 sm:p-0">
       <img src="@/assets/logo_ch.svg" alt="" class="h-12 sm:h-16 m-auto" />
     </div>
     <div class="block flex-grow">
-      <div v-show="!showMobileNav" @click="showMobileNav = true" class="block material-symbols-outlined text-gray-700 text-2xl font-bold sm:hidden w-full text-center">expand_more</div>
-      <div v-show="showMobileNav" @click="showMobileNav = false" class="block material-symbols-outlined text-gray-700 text-2xl font-bold sm:hidden w-full text-center">expand_less</div>
+      <div v-show="!showMobileNav" @click="showMobileNav = true" class="block bg-gray-50 material-symbols-outlined text-gray-700 text-2xl font-bold sm:hidden w-full text-center">expand_more</div>
+      <div v-show="showMobileNav" @click="showMobileNav = false" class="block bg-gray-50 material-symbols-outlined text-gray-700 text-2xl font-bold sm:hidden w-full text-center">expand_less</div>
     </div>
     <div :class="{'nav-links': true, 'hidden': !showMobileNav}">
       <router-link to="/about">{{ t('about') }}</router-link>
