@@ -62,7 +62,6 @@ function submitAll() {
         userInfo: user.userInfo,
         expire: user.expire,
       };
-      alarm.playSound(0);
       // set userStore data to localStorage
       localStorage.setItem('userDataStore', JSON.stringify(userData));
       router.push('/game');
