@@ -21,7 +21,7 @@ const linkList:string[] = [
     <div class="page-title">{{ t('visitor') }}</div>
     <hr class="page-title-hr">
     <div class="page-button-box">
-      <button v-for="(item, index) in linkList" :key="index" @click="router.push(`/about/${item}`)">{{ t(item) }}</button>
+      <button v-for="(item, index) in linkList" :key="index" @click="router.push(`/visitor/${item}`)">{{ t(item) }}</button>
     </div>
   </div>
 </template>

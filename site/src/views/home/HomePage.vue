@@ -9,10 +9,7 @@ const { t, locale } = useI18n();
 
 <template>
   <div>
-    <div class="banner">
-      <img src="https://scontent.fkhh1-1.fna.fbcdn.net/v/t1.6435-9/118950782_3521193707901861_8691128215478213857_n.jpg?_nc_cat=100&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=zhC41XU5jY4AX81M6ot&_nc_ht=scontent.fkhh1-1.fna&oh=00_AfAoj-ZYVsoUBqNwjiNxdlvjBsNLEoY00o3RmkXN2Y2r2w&oe=64E9DC05" alt="">
-    </div>
-    <div class="bg-gray-700 text-white p-5 flex justify-center items-center gap-5 sm:gap-7 shadow">
+    <div class="bg-gray-700 text-white p-5 flex flex-col sm:flex-row justify-center items-center gap-5 sm:gap-7 shadow">
       <div class="flex flex-col gap-3 sm:items-end">
         <div class="sm:flex items-end">
           <div class="text-xl font-semibold">{{ t('static-exhibition') }}：</div>
@@ -27,9 +24,10 @@ const { t, locale } = useI18n();
           </div>
         </div>
       </div>
-      <div class="border h-[100px]"></div>
-      <div>
-        <button @click="router.push('/login')" class="bg-sky-600 shadow-lg py-2 px-5 sm:py-3 sm:px-10 text-xl font-semibold hover:bg-sky-500 duration-200">{{ t('login') }}</button>
+      <div class="border w-full sm:w-0 sm:h-[100px]"></div>
+      <div class="flex flex-col items-center sm:items-start">
+        <div class="py-2 font-semibold sm:text-lg italic">{{ t('game') }}</div>
+        <button @click="router.push('/login')" class="bg-sky-600 shadow-lg py-2 px-5 sm:py-3 sm:px-10 text-xl font-semibold hover:bg-sky-500 duration-200">{{ t('login-now') }}</button>
       </div>
     </div>
     <div class="flex flex-col gap-5 p-5 items-center">
@@ -58,3 +56,11 @@ const { t, locale } = useI18n();
 </style>
 
 <i18n lang="yaml" src="@/assets/locales.yaml"></i18n>
+<i18n lang="yaml">
+  en-US:
+    login-now: 'Login Now'
+    game: 'Collect points and redeem for gifts!'
+  zh-TW:
+    login-now: '馬上登入'
+    game: '集點通關換好禮'
+</i18n>

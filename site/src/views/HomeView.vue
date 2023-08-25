@@ -10,6 +10,9 @@ import FooterBar from '@/components/FooterBar.vue';
       <NavBar></NavBar>
     </div>
     <div class="flex-grow flex flex-col overflow-auto">
+      <div class="banner">
+        <img src="@/assets/bg.png" alt="">
+      </div>
       <div class="flex-grow">
         <router-view></router-view>
       </div>
@@ -20,4 +23,11 @@ import FooterBar from '@/components/FooterBar.vue';
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.banner {
+  @apply w-full;
+  img {
+    @apply block w-full 3xl:w-[1920px] m-auto object-cover shadow;
+  }
+}
+</style>
