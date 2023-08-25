@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 import VueRequest from '@/vue-request';
-import QRCodeVue3 from 'qrcode-vue3';
+import VueQrcode from '@chenfengyuan/vue-qrcode';
 import { useI18n } from 'vue-i18n';
 
 const user = useUserStore();
@@ -15,9 +15,6 @@ async function getData() {
   await vr.Get('auth/user/qrcode', qrcode, true, true);
   isLoaded.value = true;
   counter.value = 120;
-  console.log(isLoaded.value);
-  console.log(QRCodeVue3);
-  console.log(qrcode.value);
 }
 getData();
 setInterval(() => {
@@ -32,22 +29,7 @@ setInterval(() => {
   <div v-if="isLoaded">
     <div class="flex">
       <div class="flex-grow"></div>
-      <QRCodeVue3
-        :width="350"
-        :height="350"
-        :value="qrcode"
-        :qrOptions="{ typeNumber: 15, mode: 'Byte', errorCorrectionLevel: 'Q' }"
-        :imageOptions="{ hideBackgroundDots: true, imageSize: 0.3, margin: 0 }"
-        :dotsOptions="{
-          type: 'extra-rounded',
-          color: '#000',
-        }"
-        :backgroundOptions="{ color: '#ffffff' }"
-        :cornersSquareOptions="{ type: 'extra-rounded', color: '#000000' }"
-        :cornersDotOptions="{ type: 'dot', color: '#000000' }"
-        fileExt="png"
-        :image="'./src/assets/logo_only.svg'"
-      />
+      <vue-qrcode :value="qrcode" tag="svg" :options="{ errorCorrectionLevel: 'H', width: 350 }"></vue-qrcode>
       <div class="flex-grow"></div>
     </div>
     <div class="text-center text-lg">{{ t('valid-in') }} {{ counter }} {{ t('seconds', counter) }}</div>
