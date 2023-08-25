@@ -46,7 +46,7 @@ async function refreshStatus() {
     window.navigator.vibrate([1000, 500, 1000, 500, 1000]);
     setTimeout(() => {
       hasBroadcast = false;
-    }, 10000);
+    }, 6000);
   }
 }
 let invervalContext: any;
