@@ -42,7 +42,7 @@ async function initialize(promise: any) {
     // hide loading indicator
   }
 }
-async function codeHandler(code: string) {
+async function codeHandler(code: any) {
   isPaused.value = true;
   if (clubCode.value === '') {
     alert('請先選擇所屬關卡');
@@ -53,7 +53,7 @@ async function codeHandler(code: string) {
   if (!r) {
     return;
   }
-  const res = await vr.Post('auth/admin/decode', { club_code: clubCode.value, payload: code}, null, true, true);
+  const res = await vr.Post('auth/admin/decode', { club_code: clubCode.value, payload: code[0].rawValue}, null, true, true);
   if (res.message === 'OK') {
     alert('驗證成功');
   } else if (res.message === 'expired') {
@@ -127,7 +127,7 @@ function paintOutline(detectedCodes: any, ctx: any) {
     </div>
     <div class="text-2xl">2. 掃描QR Code</div>
     <div>
-      <QrcodeStream @init="initialize" @decode="codeHandler" :paused="isPaused" :track="paintOutline">
+      <QrcodeStream @init="initialize" @detect="codeHandler" :paused="isPaused" :track="paintOutline">
         <div class="h-full w-full flex flex-col bg-white bg-opacity-80" v-if="isPaused">
           <div class="flex-grow"></div>
           <div class="text-center text-2xl">讀取中...</div>
