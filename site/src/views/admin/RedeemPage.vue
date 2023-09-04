@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { useAdminStore } from '@/stores/admin';
 import VueRequest from '@/vue-request';
-import { QrcodeStream } from 'qrcode-reader-vue3';
+import { QrcodeStream } from 'vue-qrcode-reader';
 
 const admin = useAdminStore();
 const vr = new VueRequest(admin?.token === undefined ? undefined : admin.token);
