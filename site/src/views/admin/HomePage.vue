@@ -21,7 +21,7 @@ function logout() {
     <button v-if="admin.userInfo.role > 0" class="round-full-button black" @click="router.push('/admin/redeem')">掃碼兌換</button>
     <button v-if="admin.userInfo.role > 8" class="round-full-button black" @click="router.push('/admin/bulletin')">公告欄</button>
     <button v-if="admin.userInfo.role > 2" class="round-full-button black" @click="router.push('/admin/broadcast')">警訊通知</button>
-    <button v-if="admin.userInfo.role > 2" class="round-full-button black" @click="logout">登出ｚ</button>
+    <button v-if="admin.userInfo.role > 2" class="round-full-button black" @click="logout">登出</button>
   </div>
 </template>
 
