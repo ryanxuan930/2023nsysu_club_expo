@@ -9,6 +9,8 @@ const { t, locale } = useI18n();
     <div class="page-title">{{ t('stand-map') }}</div>
     <hr class="page-title-hr">
     <div class="page-section-title">{{ t('content') }}</div>
+    <img src="@/assets/layout.svg" alt="">
+    <img src="@/assets/club_stand_list.jpg" alt="">
   </div>
 </template>
 

@@ -25,7 +25,6 @@ const { t, locale } = useI18n();
         <router-link to="/visitor/stand-map">{{ t('stand-map') }}</router-link>
         <router-link to="/visitor/program">{{ t('program') }}</router-link>
         <router-link to="/visitor/market-stand-map">{{ t('market-stand-map') }}</router-link>
-        <router-link to="/visitor/club-list">{{ t('club-list') }}</router-link>
       </div>
       <div>
         <router-link class="link-title" to="">{{ t('links') }}</router-link>

@@ -8,7 +8,7 @@ const { t, locale } = useI18n();
   <div class="page-content-box">
     <div class="page-title">{{ t('key-visual') }}</div>
     <hr class="page-title-hr">
-    <div class="page-section-title"></div>
+    <img src="@/assets/poster.png" alt="">
   </div>
 </template>
 

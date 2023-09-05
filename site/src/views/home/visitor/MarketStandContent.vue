@@ -9,6 +9,7 @@ const { t, locale } = useI18n();
     <div class="page-title">{{ t('market-stand-map') }}</div>
     <hr class="page-title-hr">
     <div class="page-section-title">{{ t('content') }}</div>
+    <img src="@/assets/bazzar.jpg" alt="">
   </div>
 </template>
 

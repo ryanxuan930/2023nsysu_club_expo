@@ -12,7 +12,6 @@ const linkList:string[] = [
   'stand-map',
   'program',
   'market-stand-map',
-  'club-list',
 ];
 </script>
 
