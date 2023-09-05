@@ -9,7 +9,7 @@ const admin = useAdminStore();
 function logout() {
   admin.reset();
   localStorage.removeItem('adminDataStore');
-  router.push('/admin/login');
+  router.push('/login/admin');
 }
 </script>
 
