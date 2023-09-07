@@ -30,19 +30,6 @@ const { t, locale } = useI18n();
         <button @click="router.push('/login')" class="bg-sky-600 shadow-lg py-2 px-5 sm:py-3 sm:px-10 text-xl font-semibold hover:bg-sky-500 duration-200">{{ t('login-now') }}</button>
       </div>
     </div>
-    <div class="flex flex-col gap-5 p-5 items-center">
-      <div class="news section">
-        <div class="text-2xl font-semibold">{{ t('news') }}</div>
-        <hr class="my-2">
-        <table class="w-full">
-          <tr>
-            <td>2023-09-01</td>
-            <td>演出名單</td>
-            <td>最新消息</td>
-          </tr>
-        </table>
-      </div>
-    </div>
   </div>
 </template>
 
