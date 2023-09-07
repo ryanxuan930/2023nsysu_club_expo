@@ -102,6 +102,10 @@ function logout() {
             </tr>
           </table>
         </div>
+        <div v-if="displayModal == 2">
+          <img src="@/assets/layout.svg" alt="">
+          <img src="@/assets/club_stand_list.jpg" alt="">
+        </div>
       </div>
     </template>
   </SmallModal>
